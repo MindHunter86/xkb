@@ -1,0 +1,49 @@
+xkb_keymap {
+        xkb_keycodes  { include "evdev+aliases(qwerty)" };
+        xkb_types     { include "complete"      };
+        xkb_compat    { include "complete"      };
+        xkb_geometry  { include "pc(pc105)"     };
+
+        xkb_symbols "my" {
+                include "pc+us+ru:2+inet(evdev)+group(alt_shift_toggle)"
+
+                replace key <FK09> {    [ Insert ] };
+                replace key <FK10> {    [ Delete ] };
+                key <UP> {
+                        type="PC_ALT_LEVEL2",
+                        repeat=yes,
+                        [ Up, Prior ],
+                        actions[Group1] = [
+                                NoAction(),
+                                RedirectKey(key=<PGUP>, clearmods=Alt)
+                        ]
+                };
+                key <DOWN> {
+                        type="PC_ALT_LEVEL2",
+                        repeat=yes,
+                        [ Down, Next ],
+                        actions[Group1] = [
+                                NoAction(),
+                                RedirectKey(key=<PGDN>, clearmods=Alt)
+                        ]
+                };
+                key <LEFT> {
+                        type="PC_ALT_LEVEL2",
+                        repeat=yes,
+                        [ Left, Home ],
+                        actions[Group1] = [
+                                NoAction(),
+                                RedirectKey(key=<HOME>, clearmods=Alt)
+                        ]
+                };
+                key <RGHT> {
+                        type="PC_ALT_LEVEL2",
+                        repeat=yes,
+                        [ Right, End ],
+                        actions[Group1] = [
+                                NoAction(),
+                                RedirectKey(key=<END>, clearmods=Alt)
+                        ]
+                };
+        };
+};
